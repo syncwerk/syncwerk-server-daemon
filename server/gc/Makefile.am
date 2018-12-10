@@ -1,0 +1,91 @@
+
+AM_CFLAGS = -DPKGDATADIR=\"$(pkgdatadir)\" \
+	-DPACKAGE_DATA_DIR=\""$(pkgdatadir)"\" \
+	-DSYNCWERK_SERVER \
+	-I$(top_srcdir)/include \
+	-I$(top_srcdir)/lib \
+	-I$(top_builddir)/lib \
+	-I$(top_srcdir)/common \
+	@CCNET_CFLAGS@ \
+	@RPCSYNCWERK_CFLAGS@ \
+	@GLIB2_CFLAGS@ \
+	@MSVC_CFLAGS@ \
+	-Wall
+
+bin_PROGRAMS = syncwerk-server-gc syncwerk-server-fsck syncwerk-server-migrate
+
+noinst_HEADERS = \
+	syncwerk-session.h \
+	repo-mgr.h \
+	verify.h \
+	fsck.h \
+	gc-core.h
+
+common_sources = \
+	syncwerk-session.c \
+	repo-mgr.c \
+	../../common/syncwerk-server-db.c \
+	../../common/branch-mgr.c \
+	../../common/fs-mgr.c \
+	../../common/block-mgr.c \
+	../../common/block-backend.c \
+	../../common/block-backend-fs.c \
+	../../common/commit-mgr.c \
+	../../common/log.c \
+	../../common/syncwerk-server-utils.c \
+	../../common/obj-store.c \
+	../../common/obj-backend-fs.c \
+	../../common/syncwerk-crypt.c \
+	../../common/config-mgr.c
+
+syncwerk_server_gc_SOURCES = \
+	syncwerk-server-gc.c \
+	verify.c \
+	gc-core.c \
+	$(common_sources)
+
+syncwerk_server_gc_LDADD = @CCNET_LIBS@ \
+	$(top_builddir)/common/cdc/libcdc.la \
+	$(top_builddir)/lib/libsyncwerk_common.la \
+	$(top_builddir)/common/db-wrapper/libdbwrapper.la \
+	@GLIB2_LIBS@ @GOBJECT_LIBS@ @SSL_LIBS@ @LIB_RT@ @LIB_UUID@ -lsqlite3 @LIBEVENT_LIBS@ \
+	@RPCSYNCWERK_LIBS@ @JANSSON_LIBS@ ${LIB_WS32} @ZLIB_LIBS@ \
+	@MYSQL_LIBS@ @PGSQL_LIBS@
+
+syncwerk_server_fsck_SOURCES = \
+	syncwerk-server-fsck.c \
+	fsck.c \
+	$(common_sources)
+
+syncwerk_server_fsck_LDADD = @CCNET_LIBS@ \
+	$(top_builddir)/common/cdc/libcdc.la \
+	$(top_builddir)/common/db-wrapper/libdbwrapper.la \
+	$(top_builddir)/lib/libsyncwerk_common.la \
+	@GLIB2_LIBS@ @GOBJECT_LIBS@ @SSL_LIBS@ @LIB_RT@ @LIB_UUID@ -lsqlite3 @LIBEVENT_LIBS@ \
+	@RPCSYNCWERK_LIBS@ @JANSSON_LIBS@ ${LIB_WS32} @ZLIB_LIBS@ \
+	@MYSQL_LIBS@ @PGSQL_LIBS@
+
+syncwerk_server_migrate_SOURCES = \
+	syncwerk-server-migrate.c \
+	$(common_sources)
+
+syncwerk_server_migrate_LDADD = @CCNET_LIBS@ \
+	$(top_builddir)/common/cdc/libcdc.la \
+	$(top_builddir)/common/db-wrapper/libdbwrapper.la \
+	$(top_builddir)/lib/libsyncwerk_common.la \
+	@GLIB2_LIBS@ @GOBJECT_LIBS@ @SSL_LIBS@ @LIB_RT@ @LIB_UUID@ -lsqlite3 @LIBEVENT_LIBS@ \
+	@RPCSYNCWERK_LIBS@ @JANSSON_LIBS@ ${LIB_WS32} @ZLIB_LIBS@ \
+	@MYSQL_LIBS@ @PGSQL_LIBS@
+
+syncwerk_server_migrate_CFLAGS = -DPKGDATADIR=\"$(pkgdatadir)\" \
+	-DPACKAGE_DATA_DIR=\""$(pkgdatadir)"\" \
+	-DSYNCWERK_SERVER -DMIGRATION \
+	-I$(top_srcdir)/include \
+	-I$(top_srcdir)/lib \
+	-I$(top_builddir)/lib \
+	-I$(top_srcdir)/common \
+	@CCNET_CFLAGS@ \
+	@RPCSYNCWERK_CFLAGS@ \
+	@GLIB2_CFLAGS@ \
+	@MSVC_CFLAGS@ \
+	-Wall

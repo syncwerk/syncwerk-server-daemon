@@ -1,0 +1,124 @@
+SUBDIRS = gc
+
+AM_CFLAGS = -DPKGDATADIR=\"$(pkgdatadir)\" \
+	-DPACKAGE_DATA_DIR=\""$(pkgdatadir)"\" \
+	-DSYNCWERK_SERVER \
+	-DFULL_FEATURE \
+	-I$(top_srcdir)/include \
+	-I$(top_srcdir)/lib \
+	-I$(top_builddir)/lib \
+	-I$(top_srcdir)/common \
+	@CCNET_CFLAGS@ \
+	@RPCSYNCWERK_CFLAGS@ \
+	@GLIB2_CFLAGS@ \
+	@MSVC_CFLAGS@ \
+	@LIBARCHIVE_CFLAGS@ \
+	-Wall
+
+bin_PROGRAMS = syncwerk-server-daemon
+
+proc_headers = $(addprefix processors/, \
+	recvfs-proc.h \
+	recvbranch-proc.h \
+	putcs-proc.h \
+	sync-repo-slave-proc.h \
+	check-tx-slave-v3-proc.h \
+	putfs-proc.h \
+	putcommit-v2-proc.h \
+	putcommit-v3-proc.h \
+	recvcommit-v3-proc.h \
+	putcs-v2-proc.h \
+	checkbl-proc.h \
+	checkff-proc.h \
+	putca-proc.h \
+	check-protocol-slave-proc.h \
+	recvfs-v2-proc.h \
+	recvbranch-v2-proc.h \
+	putfs-v2-proc.h)
+
+noinst_HEADERS = web-accesstoken-mgr.h chunkserv-mgr.h syncwerk-session.h \
+	repo-mgr.h \
+	share-mgr.h \
+	token-mgr.h \
+	passwd-mgr.h \
+	quota-mgr.h \
+	listen-mgr.h \
+	../common/mq-mgr.h \
+	size-sched.h \
+	block-tx-server.h \
+	copy-mgr.h \
+	http-server.h \
+	upload-file.h \
+	access-file.h \
+	pack-dir.h \
+	fileserver-config.h \
+	http-status-codes.h \
+	zip-download-mgr.h \
+	index-blocks-mgr.h \
+	$(proc_headers)
+
+syncwerk_server_daemon_SOURCES = \
+	syncwerk-server-daemon.c \
+	web-accesstoken-mgr.c chunkserv-mgr.c syncwerk-session.c \
+	zip-download-mgr.c \
+	index-blocks-mgr.c \
+	share-mgr.c \
+	token-mgr.c \
+	passwd-mgr.c \
+	quota-mgr.c \
+	listen-mgr.c \
+	repo-op.c \
+	repo-perm.c \
+	size-sched.c \
+	virtual-repo.c \
+	copy-mgr.c \
+	http-server.c \
+	upload-file.c \
+	access-file.c \
+	pack-dir.c \
+	fileserver-config.c \
+	../common/syncwerk-server-db.c \
+	../common/branch-mgr.c ../common/fs-mgr.c \
+	../common/config-mgr.c \
+	repo-mgr.c ../common/commit-mgr.c \
+	../common/log.c ../common/object-list.c \
+	../common/rpc-service.c \
+	../common/vc-common.c \
+	../common/syncwerk-server-utils.c \
+	../common/obj-store.c \
+	../common/obj-backend-fs.c \
+	../common/syncwerk-crypt.c \
+	../common/diff-simple.c \
+	../common/mq-mgr.c \
+	../common/block-mgr.c \
+	../common/block-backend.c \
+	../common/block-backend-fs.c \
+	../common/merge-new.c \
+	block-tx-server.c \
+	../common/block-tx-utils.c \
+	processors/recvfs-proc.c \
+	processors/recvbranch-proc.c \
+	processors/putcs-proc.c \
+	processors/sync-repo-slave-proc.c \
+	processors/check-tx-slave-v3-proc.c \
+	processors/putfs-proc.c \
+	processors/putcommit-v2-proc.c \
+	processors/putcommit-v3-proc.c \
+	processors/recvcommit-v3-proc.c \
+	processors/putcs-v2-proc.c \
+	processors/checkbl-proc.c \
+	processors/checkff-proc.c \
+	processors/putca-proc.c \
+	processors/check-protocol-slave-proc.c \
+	processors/recvfs-v2-proc.c \
+	processors/recvbranch-v2-proc.c \
+	processors/putfs-v2-proc.c
+
+syncwerk_server_daemon_LDADD = @CCNET_LIBS@ \
+	$(top_builddir)/lib/libsyncwerk_common.la \
+	@GLIB2_LIBS@ @GOBJECT_LIBS@ @SSL_LIBS@ @LIB_RT@ @LIB_UUID@ -lsqlite3 @LIBEVENT_LIBS@ -levhtp \
+	$(top_builddir)/common/cdc/libcdc.la \
+	$(top_builddir)/common/db-wrapper/libdbwrapper.la \
+	@RPCSYNCWERK_LIBS@ @JANSSON_LIBS@ ${LIB_WS32} @ZLIB_LIBS@ \
+	@LIBARCHIVE_LIBS@ @LIB_ICONV@ \
+	@MYSQL_LIBS@ @PGSQL_LIBS@

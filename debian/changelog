@@ -1,0 +1,5 @@
+syncwerk-server-daemon (${BUILDVER}.${BUILDITERATION}+${RELEASE}~${OS}) unstable; urgency=medium
+
+  * Initial release
+
+ -- ${MAINTAINER}  $(date --rfc-2822)

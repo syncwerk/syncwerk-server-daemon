@@ -1,0 +1,11 @@
+prefix=(DESTDIR)@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libsyncwerk
+Description: Client library for accessing syncwerk service.
+Version: @VERSION@
+Libs: -L${libdir} -lsyncwerk @RPCSYNCWERK_LIBS@
+Cflags: -I${includedir} @RPCSYNCWERK_CFLAGS@
+Requires: gobject-2.0 glib-2.0

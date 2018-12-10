@@ -1,0 +1,26 @@
+#ifndef SYNCWERK_ERROR_H
+#define SYNCWERK_ERROR_H
+
+#define SYNCW_ERR_GENERAL        500
+#define SYNCW_ERR_BAD_REPO       501
+#define SYNCW_ERR_BAD_COMMIT     502
+#define SYNCW_ERR_BAD_ARGS       503
+#define SYNCW_ERR_INTERNAL       504
+#define SYNCW_ERR_BAD_FILE       505
+#define SYNCW_ERR_BAD_RELAY      506
+#define SYNCW_ERR_LIST_COMMITS   507
+#define SYNCW_ERR_REPO_AUTH      508
+#define SYNCW_ERR_GC_NOT_STARTED 509
+#define SYNCW_ERR_MONITOR_NOT_CONNECTED 510
+#define SYNCW_ERR_BAD_DIR_ID     511
+#define SYNCW_ERR_NO_WORKTREE    512
+#define SYNCW_ERR_BAD_PEER_ID    513
+#define SYNCW_ERR_REPO_LOCKED    514
+#define SYNCW_ERR_DIR_MISSING    515
+#define SYNCW_ERR_PATH_NO_EXIST  516 /* the dir or file pointed by this path not exists */
+
+#define POST_FILE_ERR_FILENAME  517
+#define POST_FILE_ERR_BLOCK_MISSING 518
+#define POST_FILE_ERR_QUOTA_FULL 519
+
+#endif
