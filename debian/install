@@ -1,2 +1,2 @@
-files/etc/syncwerk/server.conf etc/syncwerk
-files/etc/syncwerk/storage.ini etc/syncwerk
+fhs/etc/syncwerk/server.conf etc/syncwerk
+fhs/etc/syncwerk/storage.ini etc/syncwerk

@@ -2,4 +2,4 @@ syncwerk-server-daemon (${BUILDVER}.${BUILDITERATION}+${RELEASE}~${OS}) unstable
 
   * Initial release
 
- -- ${MAINTAINER}  $(date --rfc-2822)
+ -- ${MAINTAINER}  ${DATERFC}
