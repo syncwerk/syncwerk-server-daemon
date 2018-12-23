@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS "wiki_wiki" ("id" integer NOT NULL PRIMARY KEY AUTOIN
 CREATE INDEX IF NOT EXISTS "wiki_wiki_fde81f11" ON "wiki_wiki" ("created_at");
 
 CREATE INDEX IF NOT EXISTS "notifications_notification_386bba5a" ON "notifications_notification" ("primary");
-CREATE INDEX IF NOT EXISTS "institutions_institutionadmin_ee11cbb1" ON "institutions_institutionadmin" ("user");
+CREATE INDEX IF NOT EXISTS "tenants_tenantadmin_ee11cbb1" ON "tenants_tenantadmin" ("user");
 
 CREATE INDEX IF NOT EXISTS "organizations_orgmemberquota_944dadb6" ON "organizations_orgmemberquota" ("org_id");
 CREATE UNIQUE INDEX IF NOT EXISTS "django_cas_ng_proxygrantingticket_session_key_user_8a4ec2bc_uniq" ON "django_cas_ng_proxygrantingticket" ("session_key", "user");

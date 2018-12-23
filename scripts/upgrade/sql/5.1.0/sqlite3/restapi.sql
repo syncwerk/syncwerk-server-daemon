@@ -49,15 +49,15 @@ CREATE TABLE IF NOT EXISTS "post_office_log" (
     "exception_type" varchar(255) NOT NULL,
     "message" text NOT NULL
 );
-CREATE TABLE IF NOT EXISTS "institutions_institution" (
+CREATE TABLE IF NOT EXISTS "tenants_tenant" (
        "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
        "name" varchar(200) NOT NULL,
        "create_time" datetime NOT NULL
 );
-CREATE TABLE IF NOT EXISTS "institutions_institutionadmin" (
+CREATE TABLE IF NOT EXISTS "tenants_tenantadmin" (
        "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
        "user" varchar(254) NOT NULL,
-       "institution_id" integer NOT NULL REFERENCES "institutions_institution" ("id")
+       "tenant_id" integer NOT NULL REFERENCES "tenants_tenant" ("id")
 );
 
 CREATE INDEX IF NOT EXISTS "post_office_attachment_emails_4be595e7" ON "post_office_attachment_emails" ("attachment_id");
@@ -69,4 +69,4 @@ CREATE INDEX IF NOT EXISTS  "post_office_email_63b5ea41" ON "post_office_email" 
 CREATE INDEX IF NOT EXISTS  "post_office_email_c83ff05e" ON "post_office_email" ("scheduled_time");
 CREATE INDEX IF NOT EXISTS  "post_office_emailtemplate_84c7951d" ON "post_office_emailtemplate" ("default_template_id");
 CREATE INDEX IF NOT EXISTS  "post_office_log_830a6ccb" ON "post_office_log" ("email_id");
-CREATE INDEX "institutions_institutionadmin_a964baeb" ON "institutions_institutionadmin" ("institution_id");
+CREATE INDEX "tenants_tenantadmin_a964baeb" ON "tenants_tenantadmin" ("tenant_id");

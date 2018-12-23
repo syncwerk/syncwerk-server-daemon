@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS `constance_config` (
 
 ALTER TABLE `profile_profile` ADD `login_id` varchar(225) DEFAULT NULL;
 ALTER TABLE `profile_profile` ADD `contact_email` varchar(225) DEFAULT NULL;
-ALTER TABLE `profile_profile` ADD `institution` varchar(225) DEFAULT NULL;
+ALTER TABLE `profile_profile` ADD `tenant` varchar(225) DEFAULT NULL;
 
 ALTER TABLE `profile_profile` ADD UNIQUE INDEX (`login_id`);
 ALTER TABLE `profile_profile` ADD INDEX (`contact_email`);
-ALTER TABLE `profile_profile` ADD INDEX (`institution`);
+ALTER TABLE `profile_profile` ADD INDEX (`tenant`);
 
 

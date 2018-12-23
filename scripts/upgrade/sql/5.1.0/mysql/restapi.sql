@@ -86,20 +86,20 @@ CREATE TABLE IF NOT EXISTS `post_office_log` (
   CONSTRAINT `email_id_refs_id_3d87f587` FOREIGN KEY (`email_id`) REFERENCES `post_office_email` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `institutions_institution` (
+CREATE TABLE IF NOT EXISTS `tenants_tenant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `create_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `institutions_institutionadmin` (
+CREATE TABLE IF NOT EXISTS `tenants_tenantadmin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(254) NOT NULL,
-  `institution_id` int(11) NOT NULL,
+  `tenant_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `i_institution_id_5f792d6fe9a87ac9_fk_institutions_institution_id` (`institution_id`),
-  CONSTRAINT `i_institution_id_5f792d6fe9a87ac9_fk_institutions_institution_id` FOREIGN KEY (`institution_id`) REFERENCES `institutions_institution` (`id`)
+  KEY `i_tenant_id_5f792d6fe9a87ac9_fk_tenants_tenant_id` (`tenant_id`),
+  CONSTRAINT `i_tenant_id_5f792d6fe9a87ac9_fk_tenants_tenant_id` FOREIGN KEY (`tenant_id`) REFERENCES `tenants_tenant` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `sysadmin_extra_userloginlog` (
