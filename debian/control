@@ -8,7 +8,7 @@ Homepage: https://www.syncwerk.com
 
 Package: syncwerk-server-daemon
 Architecture: any
-Depends: \${shlibs:Depends}, \${misc:Depends}, syncwerk-server-ccnet (=${FULLBUILDVER}), syncwerk-server-libevhtp (=${FULLBUILDVER}), syncwerk-server-librpc (=${FULLBUILDVER}), mariadb-server
+Depends: \${shlibs:Depends}, \${misc:Depends}, syncwerk-server-ccnet (>=${FULLBUILDVER}), syncwerk-server-libevhtp (>=${FULLBUILDVER}), syncwerk-server-librpc (>=${FULLBUILDVER}), mariadb-server
 Conflicts: syncwerk-client
 Description: Syncwerk Server
  Provides Syncwerk Server
